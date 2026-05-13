@@ -1,0 +1,232 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+:root {
+    --md-primary-fg-color: #990033;
+    --md-primary-fg-color--light: #c02d4f;
+    --md-primary-fg-color--dark: #700025;
+}
+
+/* Adjust the header specifically if needed to ensure the background matches */
+.md-header {
+    background-color: #990033;
+}
+
+.md-footer {
+    background-color: #990033;
+}
+
+/* Ensure links and buttons use the group color */
+.md-typeset a {
+    color: #990033;
+}
+
+.md-typeset .admonition.abstract {
+    border-left-color: #990033;
+}
+
+.md-typeset .admonition.abstract>.admonition-title {
+    background-color: rgba(153, 0, 51, 0.1);
+}
+
+/* Obsidian/Notion-style code blocks */
+.md-typeset pre {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.md-typeset code {
+    border-radius: 4px;
+}
+
+/* Style for line numbers in code blocks */
+.md-typeset .codehilite .linenos,
+.md-typeset .highlight .linenos {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Spacing between sections */
+.md-typeset h2 {
+    margin-top: 3em;
+    border-bottom: 2px solid rgba(153, 0, 51, 0.2);
+    padding-bottom: 0.5em;
+    font-size: 1.8em;
+}
+
+.md-typeset h3 {
+    margin-top: 2.5em;
+    font-size: 1.8em;
+}
+
+.md-typeset h2 code,
+.md-typeset h3 code {
+    background-color: rgba(153, 0, 51, 0.05);
+    padding: 0.1em 0.3em;
+}
+
+.md-typeset h4 {
+    margin-top: 1.5em;
+    color: #555;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.md-typeset h4 i {
+    color: var(--md-primary-fg-color);
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+/* Enhanced horizontal rule for section division */
+.md-typeset hr {
+    margin: 4em 0;
+    border: none;
+    border-bottom: 2px solid rgba(153, 0, 51, 0.1);
+    height: 0;
+}
+
+/* Landing Page Styles */
+.hero-container {
+    padding: 1rem 0 3rem;
+    text-align: center;
+    background: transparent;
+}
+
+.hero-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 0rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--md-primary-fg-color);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--md-primary-fg-color);
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(153, 0, 51, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--md-primary-fg-color--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(153, 0, 51, 0.4);
+}
+
+.btn-primary .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.custom-card {
+    background: var(--md-default-bg-color);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-decoration: none !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit !important;
+}
+
+.custom-card.centered {
+    align-items: center;
+    text-align: center;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(153, 0, 51, 0.1);
+    border-color: var(--md-primary-fg-color);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--md-primary-fg-color);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--md-primary-fg-color);
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.card-footer {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--md-primary-fg-color);
+    display: flex;
+    align-items: center;
+}
+
+.card-footer i {
+    margin-left: 5px;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .custom-card {
+    background: rgba(43, 44, 51, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="slate"] .card-description {
+    color: #ccc;
+}
+
+[data-md-color-scheme="slate"] .hero-subtitle {
+    color: #aaa;
+}
