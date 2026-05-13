@@ -1,0 +1,112 @@
+site_name: eXiT OS
+site_description: Documentation for the exitOS Project
+site_author: eXiT
+site_url: https://exit.udg.edu/
+repo_url: https://github.com/llorencburgas/exitOS
+repo_name: llorencburgas/exitOS
+
+theme:
+  name: material
+  logo: img/logo.png
+  favicon: img/logo.png
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums: true
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+nav:
+  - Home: index.md
+  - Server:
+      - server:
+          - General: Server/server/General.md
+          - Eines LLM: Server/server/DEFINICIÓ_EINES_LLM.md
+          - Rutes Core: Server/server/core_paths.md
+          - Pàgines HTML: Server/server/HTML_PAGES.md
+          - Pàgina Main: Server/server/PÀGINA_MAIN.md
+          - Pàgina Devices: Server/server/PÀGINA_DEVICES.md
+          - Pàgina Database: Server/server/PÀGINA_DATABASE.md
+          - Pàgina Model: Server/server/PÀGINA_MODEL.md
+          - Pàgina Configuració: Server/server/PÀGINA_CONFIGURACIÓ.md
+          - Pàgina Optimització: Server/server/PÀGINA_OPTIMITZACIÓ.md
+          - Flexibility: Server/server/FLEXIBILITY.md
+          - Tasks Diàries: Server/server/DAILY_TASKS.md
+          - LLM: Server/server/LLM.md
+  - SqlDB:
+      - DB Engine:
+          - Mètodes Privats: SqlDB/sqlDB/PRIVATE_METHODS.md
+          - Sensors (Getters): SqlDB/sqlDB/SENSORS_-_Getters.md
+          - Sensors (Setters): SqlDB/sqlDB/SENSORS_-_Setters.md
+          - Sensors (Home Assistant): SqlDB/sqlDB/SENSORS_-_Home_Asistant.md
+          - Forecasts: SqlDB/sqlDB/FORECASTS.md
+          - General: SqlDB/sqlDB/GENERAL.md
+          - Dispositius: SqlDB/sqlDB/DEVICES.md
+  - Forecaster:
+      - Manager: Forecaster/ForecasterManager/General.md
+      - Engine: Forecaster/Forecaster/General.md
+      - Metrics: Forecaster/ForecastMetrics/General.md
+  - Optimizer:
+      - Scheduler: Optimizer/OptimalScheduler/General.md
+      - Flexibility: Optimizer/FlexibilityManager/General.md
+  - Assets:
+      - EVCharger: Assets/EVCharger/General.md
+      - Shelly: Assets/ShellyPlus1pm/General.md
+      - Battery: Assets/SonnenBattery/General.md
+  - Interfície Web:
+      - Resum: WWW/index.md
+      - Pàgines HTML:
+          - Sensors: WWW/sensors.md
+          - Optimization: WWW/optimization.md
+          - Model: WWW/model.md
+          - Main: WWW/main.md
+          - LLM Chat: WWW/llmChat.md
+          - Database View: WWW/databaseView.md
+          - Config Page: WWW/config_page.md
+          - Base: WWW/base.md
+  - About: about.md
+
+
+
