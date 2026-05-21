@@ -353,7 +353,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../Assets/" class="md-tabs__link">
+        <a href="../../../Assets/Assets/" class="md-tabs__link">
           
   
   
@@ -1669,7 +1669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Assets/" class="md-nav__link">
+      <a href="../../../Assets/Assets/" class="md-nav__link">
         
   
   
@@ -2263,12 +2263,16 @@ dels sensors per a enviar al frontend i poder generar un plotly.</p>
 <p><a href="../../../SqlDB/sqlDB/SENSORS_-_Getters/#get_all_saved_sensors_data"><code>get_all_saved_sensors_data</code></a></p>
 <hr />
 <h2 id="force_update_database"><code>force_update_database</code><a class="headerlink" href="#force_update_database" title="Permanent link">&para;</a></h2>
-<p><small style="color: grey; display: block; margin-bottom: 15px; margin-top: -15px;">Route: /force_update_database</small></p>
+<p><small style="color: grey; display: block; margin-bottom: 15px; margin-top: -15px;">Route: /force_update_database/<use_clean></small></p>
 <p>Actua com a connexió entre en frontend (HTML) i la base de dades,
  cridant al mètode per a actualitzar les dades dels sensors.</p>
 <h4 id="exemple-dus_1"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">force_update_database</span><span class="p">()</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">force_update_database</span><span class="p">(</span><span class="n">use_clean</span><span class="o">=...</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<h4 id="parametres-dentrada"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres d'entrada<a class="headerlink" href="#parametres-dentrada" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>use_clean</code>: -</li>
+</ul>
 <h4 id="valor-de-retorn_1"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_1" title="Permanent link">&para;</a></h4>
 <p>"ok"</p>
 <h4 id="depen-de_1"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_1" title="Permanent link">&para;</a></h4>
