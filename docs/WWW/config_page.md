@@ -49,5 +49,5 @@
     setFormLock(true);
 
     #### <i class="fa-solid fa-network-wired" style="color: #990033;"></i> Dependències API (Pàgina)
-    [`save_config`](../../Server/server/General.md#save_config), [`delete_config`](../../Server/server/General.md#delete_config), [`get_res_certify_data`](../../Server/server/General.md#get_res_certify_data)
+    [`save_config`](../Server/server/General.md#save_config), [`delete_config`](../Server/server/General.md#delete_config), [`get_res_certify_data`](../Server/server/General.md#get_res_certify_data)
 

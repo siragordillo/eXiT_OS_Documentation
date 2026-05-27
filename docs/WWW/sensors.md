@@ -20,7 +20,7 @@
     - **`onlySavedSwitch`**: comentari onlySavedSwitch
 
     #### <i class="fa-solid fa-network-wired" style="color: #990033;"></i> Dependències API (Pàgina)
-    [`get_sensors`](../../Server/server/General.md#get_sensors), [`update_sensors`](../../Server/server/General.md#update_sensors)
+    [`get_sensors`](../Server/server/General.md#get_sensors), [`update_sensors`](../Server/server/General.md#update_sensors)
 
     ### `LoadDevices`
     Carrega dispositius amb un fetch i els renderitza en pantalla. Assumim que fetch retorna format { "<device name>": [ {entity_id, friendly_name}, ... ], ... }
@@ -32,7 +32,7 @@
     ```
 
     #### <i class="fa-solid fa-link" style="color: #990033;"></i> Dependències API
-    [`get_sensors`](../../Server/server/General.md#get_sensors)
+    [`get_sensors`](../Server/server/General.md#get_sensors)
 
     ---
 
@@ -117,7 +117,7 @@
     ```
 
     #### <i class="fa-solid fa-link" style="color: #990033;"></i> Dependències API
-    [`update_sensors`](../../Server/server/General.md#update_sensors)
+    [`update_sensors`](../Server/server/General.md#update_sensors)
 
     ---
 

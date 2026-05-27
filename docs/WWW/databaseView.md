@@ -74,5 +74,5 @@
     //#region SELF DESTRUCT BUTTON
 
     #### <i class="fa-solid fa-network-wired" style="color: #990033;"></i> Dependències API (Pàgina)
-    [`get_graph_info`](../../Server/server/General.md#get_graph_info), [`force_update_database`](../../Server/server/General.md#force_update_database), [`self_destruct`](../../Server/server/General.md#self_destruct)
+    [`get_graph_info`](../Server/server/General.md#get_graph_info), [`force_update_database`](../Server/server/General.md#force_update_database), [`self_destruct`](../Server/server/General.md#self_destruct)
 

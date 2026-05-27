@@ -31,7 +31,7 @@ Diccionari
 ---
 
 ## `force_update_database` {: #force_update_database }
-<small style="color: grey; display: block; margin-bottom: 15px; margin-top: -15px;">Route: /force_update_database</small>
+<small style="color: grey; display: block; margin-bottom: 15px; margin-top: -15px;">Route: /force_update_database/<use_clean></small>
 
 Actua com a connexió entre en frontend (HTML) i la base de dades,
  cridant al mètode per a actualitzar les dades dels sensors.
@@ -40,8 +40,13 @@ Actua com a connexió entre en frontend (HTML) i la base de dades,
 #### <i class="fa-solid fa-laptop-code"></i> Exemple d'ús
 
 ```python
-resultat = force_update_database()
+resultat = force_update_database(use_clean=...)
 ```
+
+
+#### <i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres d'entrada
+
+- `use_clean`: -
 
 
 #### <i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn

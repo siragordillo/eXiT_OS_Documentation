@@ -28,7 +28,7 @@
         // Reload saved configurations with new translations
 
     #### <i class="fa-solid fa-network-wired" style="color: #990033;"></i> Dependències API (Pàgina)
-    [`run_optimization`](../../Server/server/General.md#run_optimization), [`get_scheduler_data`](../../Server/server/General.md#get_scheduler_data), [`get_flexi_data`](../../Server/server/General.md#get_flexi_data), [`save_optimization_config`](../../Server/server/General.md#save_optimization_config), [`get_config_file_names`](../../Server/server/General.md#get_config_file_names), [`get_device_config_data/`](../../Server/server/General.md#get_device_config_data/), [`update_device_config`](../../Server/server/General.md#update_device_config), [`delete_optimization_config/`](../../Server/server/General.md#delete_optimization_config/)
+    [`run_optimization`](../Server/server/General.md#run_optimization), [`get_scheduler_data`](../Server/server/General.md#get_scheduler_data), [`get_flexi_data`](../Server/server/General.md#get_flexi_data), [`save_optimization_config`](../Server/server/General.md#save_optimization_config), [`get_config_file_names`](../Server/server/General.md#get_config_file_names), [`get_device_config_data/`](../Server/server/General.md#get_device_config_data/), [`update_device_config`](../Server/server/General.md#update_device_config), [`delete_optimization_config/`](../Server/server/General.md#delete_optimization_config/)
 
     ### `loadDeviceTypes`
     Carrega les configuracions dels dispositius segons l'idioma seleccionat
@@ -44,7 +44,7 @@
     - `locale`: -
 
     #### <i class="fa-solid fa-link" style="color: #990033;"></i> Dependències API
-    [`run_optimization`](../../Server/server/General.md#run_optimization)
+    [`run_optimization`](../Server/server/General.md#run_optimization)
 
     ---
 
@@ -58,7 +58,7 @@
     ```
 
     #### <i class="fa-solid fa-link" style="color: #990033;"></i> Dependències API
-    [`get_scheduler_data`](../../Server/server/General.md#get_scheduler_data), [`get_flexi_data`](../../Server/server/General.md#get_flexi_data)
+    [`get_scheduler_data`](../Server/server/General.md#get_scheduler_data), [`get_flexi_data`](../Server/server/General.md#get_flexi_data)
 
     ---
 
@@ -151,7 +151,7 @@
     ```
 
     #### <i class="fa-solid fa-link" style="color: #990033;"></i> Dependències API
-    [`save_optimization_config`](../../Server/server/General.md#save_optimization_config)
+    [`save_optimization_config`](../Server/server/General.md#save_optimization_config)
 
     ---
 
@@ -187,7 +187,7 @@
     ```
 
     #### <i class="fa-solid fa-link" style="color: #990033;"></i> Dependències API
-    [`get_config_file_names`](../../Server/server/General.md#get_config_file_names), [`get_device_config_data/`](../../Server/server/General.md#get_device_config_data/), [`update_device_config`](../../Server/server/General.md#update_device_config), [`delete_optimization_config/`](../../Server/server/General.md#delete_optimization_config/)
+    [`get_config_file_names`](../Server/server/General.md#get_config_file_names), [`get_device_config_data/`](../Server/server/General.md#get_device_config_data/), [`update_device_config`](../Server/server/General.md#update_device_config), [`delete_optimization_config/`](../Server/server/General.md#delete_optimization_config/)
 
     #### <i class="fa-solid fa-arrow-right-from-bracket" style="color: #990033;"></i> Valor de retorn
 

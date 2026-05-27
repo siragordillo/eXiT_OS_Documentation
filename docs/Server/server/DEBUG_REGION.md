@@ -14,7 +14,7 @@ panik_function()
 
 
 #### <i class="fa-solid fa-link"></i> Depèn de:
-[`get_data_from_forecast_from_date_and_sensorID`](../../SqlDB/sqlDB/FORECASTS.md#get_data_from_forecast_from_date_and_sensorID)
+[`config_optimized_devices_HA`](../../Server/server/DAILY_TASKS.md#config_optimized_devices_HA)
 
 
 

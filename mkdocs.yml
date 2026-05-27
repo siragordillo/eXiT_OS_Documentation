@@ -40,6 +40,7 @@ plugins:
   - search
 
 markdown_extensions:
+  - md_in_html
   - attr_list
   - admonition
   - pymdownx.highlight:
@@ -91,10 +92,11 @@ nav:
   - Optimizer:
       - Scheduler: Optimizer/OptimalScheduler/General.md
       - Flexibility: Optimizer/FlexibilityManager/General.md
-  - Assets:
-      - EVCharger: Assets/EVCharger/General.md
-      - Shelly: Assets/ShellyPlus1pm/General.md
-      - Battery: Assets/SonnenBattery/General.md
+#  - Assets:
+#      - Resum: Assets/Assets.md
+#      - EVCharger: Assets/EVCharger/General.md
+#      - Shelly: Assets/ShellyPlus1pm/General.md
+#      - Battery: Assets/SonnenBattery/General.md
   - Interfície Web:
       - Resum: WWW/index.md
       - Pàgines HTML:

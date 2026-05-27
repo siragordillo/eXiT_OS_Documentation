@@ -28,7 +28,7 @@ def extract_api_calls(text):
 
 def get_api_link(endpoint):
     """Genera el link a la documentació del servidor per a un endpoint"""
-    return f"../../Server/server/General.md#{endpoint}"
+    return f"../Server/server/General.md#{endpoint}"
 
 def parse_js_functions(script_content):
     """Parseja funcions i les seves dependències API internes"""

@@ -1,0 +1,2660 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the exitOS Project">
+      
+      
+        <meta name="author" content="eXiT">
+      
+      
+        <link rel="canonical" href="https://exit.udg.edu/Optimizer/OptimalScheduler/General/">
+      
+      
+        <link rel="prev" href="../../../Forecaster/ForecastMetrics/General/">
+      
+      
+        <link rel="next" href="../../FlexibilityManager/General/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../img/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Scheduler - eXiT OS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#general-optimalscheduler" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="eXiT OS" class="md-header__button md-logo" aria-label="eXiT OS" data-md-component="logo">
+      
+  <img src="../../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            eXiT OS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scheduler
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/llorencburgas/exitOS" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    llorencburgas/exitOS
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Server/server/General/" class="md-tabs__link">
+          
+  
+  
+  Server
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SqlDB/sqlDB/PRIVATE_METHODS/" class="md-tabs__link">
+          
+  
+  
+  SqlDB
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Forecaster/ForecasterManager/General/" class="md-tabs__link">
+          
+  
+  
+  Forecaster
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Optimizer
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../WWW/" class="md-tabs__link">
+          
+  
+  
+  Interfície Web
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="eXiT OS" class="md-nav__button md-logo" aria-label="eXiT OS" data-md-component="logo">
+      
+  <img src="../../../img/logo.png" alt="logo">
+
+    </a>
+    eXiT OS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/llorencburgas/exitOS" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    llorencburgas/exitOS
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Server
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    server
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    server
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/General/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/DEFINICI%C3%93_EINES_LLM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eines LLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/core_paths/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rutes Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/HTML_PAGES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgines HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/P%C3%80GINA_MAIN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgina Main
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/P%C3%80GINA_DEVICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgina Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/P%C3%80GINA_DATABASE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgina Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/P%C3%80GINA_MODEL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgina Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/P%C3%80GINA_CONFIGURACI%C3%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgina Configuració
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/P%C3%80GINA_OPTIMITZACI%C3%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgina Optimització
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/FLEXIBILITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flexibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/DAILY_TASKS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasks Diàries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Server/server/LLM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SqlDB
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SqlDB
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DB Engine
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DB Engine
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/PRIVATE_METHODS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mètodes Privats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/SENSORS_-_Getters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensors (Getters)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/SENSORS_-_Setters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensors (Setters)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/SENSORS_-_Home_Asistant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensors (Home Assistant)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/FORECASTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forecasts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/GENERAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SqlDB/sqlDB/DEVICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispositius
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forecaster
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Forecaster
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Forecaster/ForecasterManager/General/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Forecaster/Forecaster/General/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Forecaster/ForecastMetrics/General/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimizer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Optimizer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#__init__-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__ {: #init }
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start_optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        start_optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare_data_for_optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prepare_data_for_optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_sensor_forecast_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sensor_forecast_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure_varbounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        configure_varbounds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__optimize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __optimize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost_DE" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cost_DE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__update_DE_step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __update_DE_step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance_consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance_consumer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance_generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance_energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance_energy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_hourly_electric_prices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_hourly_electric_prices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_hourly_config_for_device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_hourly_config_for_device
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FlexibilityManager/General/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flexibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfície Web
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Interfície Web
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pàgines HTML
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pàgines HTML
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sensors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Main
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/llmChat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Chat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/databaseView/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database View
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/config_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config Page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../WWW/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#__init__-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__ {: #init }
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start_optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        start_optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare_data_for_optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prepare_data_for_optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_sensor_forecast_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sensor_forecast_data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure_varbounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        configure_varbounds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__optimize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __optimize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost_DE" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cost_DE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__update_DE_step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __update_DE_step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance_consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance_consumer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance_generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__calc_total_balance_energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __calc_total_balance_energy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_hourly_electric_prices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_hourly_electric_prices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get_hourly_config_for_device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_hourly_config_for_device
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="general-optimalscheduler">General (OptimalScheduler)<a class="headerlink" href="#general-optimalscheduler" title="Permanent link">&para;</a></h1>
+<h3 id="__init__-init"><code>__init__</code> {: #<strong>init</strong> }<a class="headerlink" href="#__init__-init" title="Permanent link">&para;</a></h3>
+<p>Controlador central per a l'optimització de recursos energètics en una xarxa local.</p>
+<p>Aquesta classe s'encarrega de gestionar la programació òptima (scheduling) de consumidors,
+generadors i sistemes d'emmagatzematge d'energia (bateries). Utilitza dades de previsió
+de consum i generació, així com els preus de l'electricitat, per resoldre un problema
+d'optimització que minimitzi el cost o maximitzi l'autoconsum en un horitzó temporal definit.</p>
+<p>Atributs principals:
+    database: Connexió amb la base de dades o el sistema (e.g., Home Assistant).
+    horizon: Finestra temporal de planificació (per defecte 24 hores).
+    horizon_min: Resolució temporal de cada interval (pas de temps).
+    maxiter: Límit d'iteracions per a l'algorisme d'optimització (ajustat segons l'entorn).
+    energy_storages: Diccionari de bateries disponibles per a la gestió de càrrega/descàrrega.</p>
+<h4 id="exemple-dus"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">obj</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">database</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>database</code>: Referencia a la classe SqlDB</li>
+</ul>
+<h4 id="depen-de"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de" title="Permanent link">&para;</a></h4>
+<p><a href="../../../SqlDB/sqlDB/GENERAL/#get_lat_long"><code>get_lat_long</code></a></p>
+<hr />
+<h3 id="start_optimization"><code>start_optimization</code><a class="headerlink" href="#start_optimization" title="Permanent link">&para;</a></h3>
+<p>Inicia i coordina el procés d'optimització energètica per a un període determinat.</p>
+<p>Aquest mètode actua com a orquestrador principal: prepara les dades d'entrada, obté les
+previsions de consum i generació per als sensors especificats, configura els límits de les
+variables de decisió (varbounds) i recupera els preus de l'electricitat. Finalment, executa
+l'algorisme d'optimització per trobar la configuració de dispositius que minimitzi el cost,
+calculant el balanç energètic resultant.</p>
+<h4 id="exemple-dus_1"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">start_optimization</span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="n">consumer_id</span><span class="o">=...</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">generator_id</span><span class="o">=...</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="n">horizon</span><span class="o">=...</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="n">horizon_min</span><span class="o">=...</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="n">today</span><span class="o">=...</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_1"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>consumer_id</code>: Identificador del sensor de consum global.</li>
+<li><code>generator_id</code>: Identificador del sensor de generació (e.g., plaques solars).</li>
+<li><code>horizon</code>: Nombre d'hores de la finestra de planificació.</li>
+<li><code>horizon_min</code>: Resolució temporal (intervals per hora).</li>
+<li><code>today</code>: Data de referència per a l'optimització.</li>
+</ul>
+<h4 id="valor-de-retorn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn" title="Permanent link">&para;</a></h4>
+<p>Una tupla amb:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">(</span><span class="n">èxit</span> <span class="k">del</span> <span class="n">procés</span><span class="p">,</span> <span class="n">configuració</span> <span class="n">per</span> <span class="n">dispositiu</span><span class="p">,</span> <span class="n">costos</span><span class="p">,</span> <span class="n">balanç</span> <span class="n">total</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>.</p>
+<h4 id="depen-de_1"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_1" title="Permanent link">&para;</a></h4>
+<p><a href="./#__calc_total_balance"><code>__calc_total_balance</code></a>, <a href="./#__optimize"><code>__optimize</code></a>, <a href="./#configure_varbounds"><code>configure_varbounds</code></a>, <a href="./#get_hourly_config_for_device"><code>get_hourly_config_for_device</code></a>, <a href="./#get_hourly_electric_prices"><code>get_hourly_electric_prices</code></a>, <a href="./#get_sensor_forecast_data"><code>get_sensor_forecast_data</code></a>, <a href="./#prepare_data_for_optimization"><code>prepare_data_for_optimization</code></a></p>
+<hr />
+<h3 id="prepare_data_for_optimization"><code>prepare_data_for_optimization</code><a class="headerlink" href="#prepare_data_for_optimization" title="Permanent link">&para;</a></h3>
+<p>Carrega i inicialitza els dispositius des de fitxers de configuració per preparar l'entorn d'optimització.</p>
+<p>Escaneja el directori de configuracions desades, llegeix els fitxers JSON corresponents
+i instancia cada dispositiu utilitzant una fàbrica (factory). Els objectes resultants
+s'organitzen en diccionaris segons la seva categoria funcional (Generadors, Consumidors
+o Sistemes d'Emmagatzematge) per ser utilitzats posteriorment en el càlcul del balanç energètic.</p>
+<h4 id="exemple-dus_2"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">prepare_data_for_optimization</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="valor-de-retorn_1"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_1" title="Permanent link">&para;</a></h4>
+<p>True si s'han trobat i carregat configuracions amb èxit; False si no hi ha cap fitxer de configuració disponible.</p>
+<hr />
+<h3 id="get_sensor_forecast_data"><code>get_sensor_forecast_data</code><a class="headerlink" href="#get_sensor_forecast_data" title="Permanent link">&para;</a></h3>
+<p>Recupera la predicció de dades d'un sensor específic per a un dia determinat i l'alinea temporalment.</p>
+<p>Aquest mètode obté les dades de forecast des de la base de dades, calcula el rang de temps
+pertinent segons l'horitzó d'optimització (avui o demà) i reconstrueix una sèrie temporal
+completa. En cas que falten dades per a hores específiques dins de la finestra temporal
+definida, s'omplen amb zeros.</p>
+<h4 id="exemple-dus_3"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_sensor_forecast_data</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=...</span><span class="p">,</span> <span class="n">today</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_2"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>sensor_id</code>: Identificador únic del sensor en el sistema.</li>
+<li><code>today</code>: Booleà que indica si es volen les dades del dia actual (True) o de l'endemà (False).</li>
+</ul>
+<h4 id="valor-de-retorn_2"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_2" title="Permanent link">&para;</a></h4>
+<p>Una tupla que conté:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">],</span> <span class="p">[</span><span class="s1">&#39;2026-05-13 00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2026-05-13 01:00&#39;</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="depen-de_2"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_2" title="Permanent link">&para;</a></h4>
+<p><a href="../../../SqlDB/sqlDB/FORECASTS/#get_data_from_forecast_from_date_and_sensorID"><code>get_data_from_forecast_from_date_and_sensorID</code></a></p>
+<hr />
+<h3 id="configure_varbounds"><code>configure_varbounds</code><a class="headerlink" href="#configure_varbounds" title="Permanent link">&para;</a></h3>
+<p>Estableix els límits inferiors i superiors (<em>constraints</em>) per a les variables del problema d'optimització.</p>
+<p>Aquest mètode defineix l'espai de cerca per a l'algorisme mapejant cada dispositiu (consumidors,
+generadors i bateries) a un rang d'índexs dins d'un vector global. Per a cada dispositiu, es
+calculen els límits de potència mínima i màxima per a cada interval de temps de l'horitzó.
+Aquests índexs (<code>vbound_start</code> i <code>vbound_end</code>) s'emmagatzemen en els objectes de dispositiu
+per permetre la reconstrucció posterior de la solució.</p>
+<h4 id="exemple-dus_4"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">configure_varbounds</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="valor-de-retorn_3"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_3" title="Permanent link">&para;</a></h4>
+<p><strong>scipy.optimize.Bounds</strong> -&gt; Objecte de restriccions que conté els vectors de límits
+inferiors i superiors per a totes les variables de decisió.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">(</span> <span class="n">lb</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="mf">3000.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3000.0</span><span class="p">],</span> <span class="n">ub</span><span class="o">=</span><span class="p">[</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">,</span> <span class="mf">3000.0</span><span class="p">],</span> <span class="n">keep_feasible</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="__optimize"><code>__optimize</code><a class="headerlink" href="#__optimize" title="Permanent link">&para;</a></h3>
+<p>Executa l'algorisme d'optimització d'Evolució Diferencial (DE) per trobar la millor configuració energètica.</p>
+<p>Aquest mètode privat configura i llança un procés d'optimització estocàstica global basat en
+poblacions. L'objectiu és minimitzar la funció de cost (<code>self.cost_DE</code>) dins dels límits
+establerts (<code>self.varbound</code>), forçant la integritat de les variables per a una gestió
+discreta (ON/OFF o potència entera). Utilitza una estratègia 'best1bin' amb inicialització
+'halton' per assegurar una bona cobertura de l'espai de cerca.</p>
+<h4 id="exemple-dus_5"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_5" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__optimize</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="valor-de-retorn_4"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_4" title="Permanent link">&para;</a></h4>
+<p>Una tupla que conté:</p>
+<ul>
+<li>
+<p>np.ndarray: Vector de solució òptima amb els valors per a cada variable de decisió.</p>
+</li>
+<li>
+<p>float: El valor de la funció de cost per a la millor solució trobada.</p>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">([</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">],</span> <span class="o">-</span><span class="mf">12.45</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="cost_DE"><code>cost_DE</code><a class="headerlink" href="#cost_DE" title="Permanent link">&para;</a></h3>
+<p>Funció objectiu per a l'algorisme d'optimització.
+Aquest mètode actua com a interfície entre l'algorisme de cerca global i el motor de càlcul
+energètic. Rep una configuració candidata generada per l'optimitzador i retorna el cost
+associat invocant el mètode intern de balanç total. És la funció que l'algorisme intentarà
+minimitzar iteració rere iteració.</p>
+<h4 id="exemple-dus_6"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_6" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">cost_DE</span><span class="p">(</span><span class="n">config</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_3"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config</code>: Vector de variables de decisió generat per l'algorisme d'optimització.</li>
+</ul>
+<h4 id="valor-de-retorn_5"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_5" title="Permanent link">&para;</a></h4>
+<p>El cost econòmic o penalització energètica de la configuració enviada.
+Exemple:  <strong>4.25</strong> --&gt; cost positiu ||   <strong>-1.12</strong> -&gt; benefici/estalvi.</p>
+<h4 id="depen-de_3"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_3" title="Permanent link">&para;</a></h4>
+<p><a href="./#__calc_total_balance"><code>__calc_total_balance</code></a></p>
+<hr />
+<h3 id="__update_DE_step"><code>__update_DE_step</code><a class="headerlink" href="#__update_DE_step" title="Permanent link">&para;</a></h3>
+<p>Sense descripció.</p>
+<h4 id="exemple-dus_7"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_7" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">obj</span><span class="o">.</span><span class="n">__update_DE_step</span><span class="p">(</span><span class="n">bounds</span><span class="o">=...</span><span class="p">,</span> <span class="n">convergence</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_4"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>bounds</code>: -</li>
+<li><code>convergence</code>: -</li>
+</ul>
+<hr />
+<h3 id="__calc_total_balance"><code>__calc_total_balance</code><a class="headerlink" href="#__calc_total_balance" title="Permanent link">&para;</a></h3>
+<p>Calcula el balanç energètic net i el cost econòmic total d'una configuració específica.</p>
+<p>Aquest mètode és el nucli del simulador energètic. Combina les previsions globals de consum i
+generació amb el comportament dels dispositius individuals (consumidors actius, generadors
+i bateries). Calcula el flux d'energia hora a hora i hi aplica els preus de mercat de
+l'electricitat per determinar el cost operatiu total. Si el paràmetre <code>total</code> és cert,
+actualitza l'estat actual de la millor solució trobada.</p>
+<h4 id="exemple-dus_8"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_8" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__calc_total_balance</span><span class="p">(</span><span class="n">config</span><span class="o">=...</span><span class="p">,</span> <span class="n">total</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_5"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config</code>: Vector de dades amb la configuració candidata per a tots els dispositius.</li>
+<li><code>total</code>: Booleà; si és True, retorna el cost total (float). Si és False, retorna el
+vector de balanç detallat (list).</li>
+</ul>
+<h4 id="valor-de-retorn_6"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_6" title="Permanent link">&para;</a></h4>
+<p>Depenent del paràmetre 'total':
+--&gt; Si True: El cost econòmic total en unitats monetàries
+--&gt; Si False: Llista del balanç net per interval</p>
+<h4 id="depen-de_4"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_4" title="Permanent link">&para;</a></h4>
+<p><a href="./#__calc_total_balance_consumer"><code>__calc_total_balance_consumer</code></a>, <a href="./#__calc_total_balance_energy"><code>__calc_total_balance_energy</code></a>, <a href="./#__calc_total_balance_generator"><code>__calc_total_balance_generator</code></a></p>
+<hr />
+<h3 id="__calc_total_balance_consumer"><code>__calc_total_balance_consumer</code><a class="headerlink" href="#__calc_total_balance_consumer" title="Permanent link">&para;</a></h3>
+<p>Simula el comportament de tots els dispositius consumidors segons una configuració donada.</p>
+<p>Itera sobre la col·lecció de consumidors (com electrodomèstics intel·ligents o càrregues
+programables), extraient del vector global la part de la configuració que correspon a
+cadascun mitjançant els seus índexs de vinculació (<code>vbound_start</code> i <code>vbound_end</code>).
+Executa la simulació individual de cada dispositiu per obtenir-ne el perfil de consum
+temporal i els costos operatius interns.</p>
+<h4 id="exemple-dus_9"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_9" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__calc_total_balance_consumer</span><span class="p">(</span><span class="n">config</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_6"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config</code>: Vector global de variables de decisió de l'optimitzador.</li>
+</ul>
+<h4 id="valor-de-retorn_7"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_7" title="Permanent link">&para;</a></h4>
+<p>Una tupla que conté:
+- llista de floats: Perfil de consum agregat per a tots els consumidors
+- float: Suma dels costos operatius propis de tots els consumidors</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="p">([</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="depen-de_5"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_5" title="Permanent link">&para;</a></h4>
+<p><a href="../../../Assets/SonnenBattery/General/#simula"><code>simula</code></a></p>
+<hr />
+<h3 id="__calc_total_balance_generator"><code>__calc_total_balance_generator</code><a class="headerlink" href="#__calc_total_balance_generator" title="Permanent link">&para;</a></h3>
+<p>To Do</p>
+<h4 id="exemple-dus_10"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_10" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__calc_total_balance_generator</span><span class="p">(</span><span class="n">config</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_7"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config</code>: </li>
+</ul>
+<hr />
+<h3 id="__calc_total_balance_energy"><code>__calc_total_balance_energy</code><a class="headerlink" href="#__calc_total_balance_energy" title="Permanent link">&para;</a></h3>
+<p>Simula l'impacte dels sistemes d'emmagatzematge (bateries) sobre el balanç energètic net.</p>
+<p>Aquest mètode integra l'activitat de les bateries en el balanç prèviament calculat entre
+consumidors i generadors. Per a cada sistema d'emmagatzematge, extreu la seva part
+corresponent del vector de configuració i executa la seva simulació (càrrega o descàrrega).
+Els valors resultants s'afegeixen al balanç global, modificant la corba d'energia final
+que s'haurà d'importar o exportar a la xarxa elèctrica.</p>
+<h4 id="exemple-dus_11"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_11" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__calc_total_balance_energy</span><span class="p">(</span><span class="n">config</span><span class="o">=...</span><span class="p">,</span> <span class="n">total_balance</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_8"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config</code>: Vector global de variables de decisió de l'optimitzador.</li>
+<li><code>total_balance</code>: Llista amb el balanç net actual (Consum - Generació) abans de bateries.</li>
+</ul>
+<h4 id="valor-de-retorn_8"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_8" title="Permanent link">&para;</a></h4>
+<p>Una tupla que conté el balanç energètic final després de l'efecte de les bateries i la suma dels costos operatius o degradació dels sistemes d'emmagatzematge.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="p">([</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="depen-de_6"><i class="fa-solid fa-link"></i> Depèn de:<a class="headerlink" href="#depen-de_6" title="Permanent link">&para;</a></h4>
+<p><a href="../../../Assets/SonnenBattery/General/#simula"><code>simula</code></a></p>
+<hr />
+<h3 id="get_hourly_electric_prices"><code>get_hourly_electric_prices</code><a class="headerlink" href="#get_hourly_electric_prices" title="Permanent link">&para;</a></h3>
+<p>Descarrega i processa els preus del mercat elèctric marginal (OMIE) per a l'horitzó d'optimització.</p>
+<p>Es connecta al portal d'OMIE per obtenir el fitxer de preus horaris del dia actual. El mètode
+descarrega un fitxer CSV temporal, n'extreu els preus de la darrera columna i els adapta a la
+resolució temporal definida pel sistema (<code>horizon_min</code>). Si l'horitzó d'optimització supera
+les 24 hores, el mètode reinicia el cicle de preus per cobrir tot el període.</p>
+<h4 id="exemple-dus_12"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_12" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_hourly_electric_prices</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="valor-de-retorn_9"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_9" title="Permanent link">&para;</a></h4>
+<p>Una llista amb el preu de l'energia per a cada interval de l'optimització.
+Retorna -1 en cas de fallada en la descàrrega.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="p">[</span><span class="mf">45.12</span><span class="p">,</span> <span class="mf">45.12</span><span class="p">,</span> <span class="mf">42.05</span><span class="p">,</span> <span class="mf">42.05</span><span class="p">,</span> <span class="mf">38.90</span><span class="p">,</span> <span class="mf">38.90</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="get_hourly_config_for_device"><code>get_hourly_config_for_device</code><a class="headerlink" href="#get_hourly_config_for_device" title="Permanent link">&para;</a></h3>
+<p>Descodifica el vector de solució de l'optimitzador en un format llegible per dispositiu.</p>
+<p>Aquest mètode rep el vector numèric pla generat per l'algorisme d'Evolució Diferencial
+i el fragmenta segons els índexs de vinculació (<code>vbound_start</code> i <code>vbound_end</code>) de cada
+actuador. El resultat és un diccionari on cada clau és el nom del dispositiu i el valor
+és la seva seqüència de consignes d'activació o potència per a tot l'horitzó.</p>
+<h4 id="exemple-dus_13"><i class="fa-solid fa-laptop-code"></i> Exemple d'ús<a class="headerlink" href="#exemple-dus_13" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">resultat</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_hourly_config_for_device</span><span class="p">(</span><span class="n">config</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="parametres_9"><i class="fa-solid fa-arrow-right-to-bracket"></i> Paràmetres<a class="headerlink" href="#parametres_9" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config</code>: Array de variables de decisió resultant de l'optimització.</li>
+</ul>
+<h4 id="valor-de-retorn_10"><i class="fa-solid fa-arrow-right-from-bracket"></i> Valor de retorn<a class="headerlink" href="#valor-de-retorn_10" title="Permanent link">&para;</a></h4>
+<p>Diccionari amb la planificació detallada per a cada dispositiu.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="p">{</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a>    <span class="s1">&#39;Rentadora&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">],</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a>    <span class="s1">&#39;Bateria_Sonnen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1500</span><span class="p">,</span> <span class="o">-</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">],</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a>    <span class="s1">&#39;Escalfador&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">]</span> 
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

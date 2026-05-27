@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 # Paths
 ROOTFS = "C:/Users/Sira/Documents/GitHub/exitOS/exitos/rootfs"
-DOCS_DIR = "c:/Users/Sira/Desktop/exitOS_Documentation/exitOs/docs"
+DOCS_DIR = "C:/Users/Sira/Desktop/exitOS_Documentation/eXiT_OS_Documentation/docs"
 
 GROUPS = {
     "Server": [os.path.join(ROOTFS, "server.py")],
@@ -517,10 +517,42 @@ def generate_www_md():
     www_dir = os.path.join(ROOTFS, "www")
     target_dir = os.path.join(DOCS_DIR, "WWW")
     os.makedirs(target_dir, exist_ok=True)
-    index_lines = ["# Interfície Web (WWW)\n\n", "Llistat de pàgines i plantilles HTML del projecte.\n\n"]
-    for file in os.listdir(www_dir):
-        if file.endswith(".html"):
-            index_lines.append(f"- **{file}**: Plantilla per a la vista de {file.replace('.html', '')}.\n")
+    index_lines = [
+        "# Interfície Web (WWW)\n\n",
+        '<div class="hero-container">\n',
+        '    <div class="card-icon"><i class="fa-solid fa-globe"></i></div>\n',
+        '    <h1 class="hero-title">Interfície Web</h1>\n',
+        '    <p class="hero-subtitle">\n',
+        '        Documentació de les pàgines HTML i la lògica JavaScript que componen el dashboard d\'eXiT OS. \n',
+        '        Cada pàgina està dividida en la seva estructura visual (HTML) i la seva lògica funcional (JS).\n',
+        '    </p>\n',
+        '</div>\n\n',
+        "## 🖥️ Pàgines del Sistema\n\n",
+        '<div class="card-grid">\n'
+    ]
+    
+    html_files = [f for f in os.listdir(www_dir) if f.endswith(".html")]
+    for file in sorted(html_files):
+        name = file.replace('.html', '')
+        # Simple icon mapping based on filename
+        icon = "fa-file-code"
+        if "config" in name.lower(): icon = "fa-sliders"
+        elif "db" in name.lower() or "database" in name.lower(): icon = "fa-database"
+        elif "main" in name.lower(): icon = "fa-house"
+        elif "model" in name.lower(): icon = "fa-brain"
+        elif "opt" in name.lower(): icon = "fa-bolt-lightning"
+        elif "sensor" in name.lower(): icon = "fa-microchip"
+        elif "chat" in name.lower(): icon = "fa-comments"
+        
+        index_lines.append(f'    <a href="{name}/" class="custom-card centered">\n')
+        index_lines.append(f'        <div class="card-icon"><i class="fa-solid {icon}"></i></div>\n')
+        index_lines.append(f'        <div class="card-title">{name.capitalize()}</div>\n')
+        index_lines.append(f'        <div class="card-description">Documentació de la plantilla <code>{file}</code> i les seves funcions JS.</div>\n')
+        index_lines.append(f'        <div class="card-footer">Explorar ➔</div>\n')
+        index_lines.append(f'    </a>\n')
+    
+    index_lines.append('</div>\n')
+    
     with open(os.path.join(target_dir, "index.md"), "w", encoding="utf-8") as f:
         f.write("".join(index_lines))
     return {"WWW": "WWW/index.md"}
